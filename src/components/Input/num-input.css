@@ -1,0 +1,9 @@
+.rc-input-number-handler {
+  height: 20px;
+  line-height: 16px;
+}
+.rc-input-number-input {
+  font-size: 20px;
+  color: #69b6f7;
+  width: 100px;
+}

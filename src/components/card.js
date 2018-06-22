@@ -12,39 +12,52 @@ const CardWrapper = styled.div`
   /* styles driven by page state */
   border-radius: ${props => (props.borderRadius ? props.borderRadius : '6px')};
   box-shadow: ${props =>
-    `${props.normal.x} ${props.normal.y} ${props.normal.blur} ${
+    `${props.normal.x}px ${props.normal.y}px ${props.normal.blur}px ${
       props.normal.spread
-    } rgba(${props.normal.rgb}, ${props.normal.opactiy})`};
+    }px rgba(${props.activeColorRgb.r}, ${props.activeColorRgb.g},${
+      props.activeColorRgb.b
+    }, ${props.normal.opacity})`};
 
   &:hover {
     border-radius: ${props =>
       props.borderRadius ? props.borderRadius : '6px'};
     box-shadow: ${props =>
-      `${props.hover.x} ${props.hover.y} ${props.hover.blur} ${
+      `${props.hover.x}px ${props.hover.y}px ${props.hover.blur}px ${
         props.hover.spread
-      } rgba(${props.hover.rgb}, ${props.hover.opactiy})`};
+      }px rgba(${props.activeColorRgb.r},${props.activeColorRgb.g},${
+        props.activeColorRgb.b
+      }, ${props.hover.opacity})`};
   }
 `
 
 const Card = props => <CardWrapper {...props}>{props.children}</CardWrapper>
 
 Card.defaultProps = {
+  activeColorRgb: {
+    r: 119,
+    g: 119,
+    b: 119,
+  },
   padding: '0.5rem',
   normal: {
-    x: '0px',
-    y: '3px',
-    blur: '3px',
-    spread: '0px',
-    opactiy: 0.5,
-    rgb: '200,200,200',
+    x: 0,
+    y: 3,
+    blur: 3,
+    spread: 0,
+    opacity: 0.75,
+    r: '200',
+    g: '200',
+    b: '200',
   },
   hover: {
-    x: '0px',
-    y: '4px',
-    blur: '6px',
-    spread: '2px',
-    opactiy: 0.25,
-    rgb: '200,200,200',
+    x: 0,
+    y: 4,
+    blur: 6,
+    spread: 2,
+    opacity: 0.5,
+    r: '200',
+    g: '200',
+    b: '200',
   },
 }
 
