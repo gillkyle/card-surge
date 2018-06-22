@@ -27,7 +27,9 @@ const Header = ({ siteTitle }) => (
     >
       {siteTitle}
     </Link>
-    <Card padding=".5rem 1rem">@gill_kyle</Card>
+    <div>
+      <Card padding="0.25rem 1.5rem">@gill_kyle</Card>
+    </div>
   </div>
 )
 

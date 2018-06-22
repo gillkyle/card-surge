@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
 import Header from '../components/header'
+import Footer from '../components/footer'
 import './index.css'
 
 import { COLORS } from '../constants'
@@ -92,10 +93,12 @@ const Layout = ({ children, data }) => (
         marginTop: '150px',
         maxWidth: 960,
         padding: '0 1rem',
+        minHeight: '75vh',
       }}
     >
       {children()}
     </div>
+    <Footer />
   </div>
 )
 
