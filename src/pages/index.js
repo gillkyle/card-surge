@@ -1,17 +1,17 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { CirclePicker } from 'react-color'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 import Card from '../components/card'
-import NumberInput from '../components/Input/num-input'
 import SliderCard from '../components/Slider/SliderCard'
 import SliderOptions from '../components/Slider/SliderOptions.json'
+import { NextArrow, PrevArrow } from '../components/Slider/SliderArrows'
 
 import { COLORS } from '../constants'
+import ControlsForm from '../components/controls-form'
 
 const Row = styled.section`
   margin-bottom: 3rem;
@@ -28,9 +28,9 @@ const CodeCard = styled(Card)`
 `
 const CodeColumn = styled.div`
   border-top-left-radius: ${props =>
-    props.borderRadius ? props.borderRadius : '6px'};
+    props.borderRadius ? props.borderRadius : '5px'};
   border-bottom-left-radius: ${props =>
-    props.borderRadius ? props.borderRadius : '6px'};
+    props.borderRadius ? props.borderRadius : '5px'};
   color: ${COLORS['secondaryBlue']};
   background-color: ${COLORS['secondaryBlueT']};
   padding: 1rem 0.5rem 1rem 1.5rem;
@@ -40,48 +40,27 @@ const CodeContent = styled.div`
   color: ${COLORS['gray']};
 `
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  )
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  )
-}
-
 const IndexPage = class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      hoverInput: true,
-      activeColor: '#777',
-      activeColorRgb: { r: 119, g: 119, b: 119, a: 1 },
+      borderRadius: 5,
+      hoverInput: false,
+      activeColor: '#bbbbbb',
+      activeColorRgb: { r: 187, g: 187, b: 187, a: 1 },
       normal: {
         x: 0,
         y: 3,
         blur: 3,
-        spread: 0,
-        opacity: 1,
+        spread: -1,
+        opacity: 0.5,
       },
       hover: {
         x: 0,
         y: 4,
-        blur: 6,
-        spread: 2,
-        opacity: 0.75,
+        blur: 4,
+        spread: 0,
+        opacity: 0.25,
       },
     }
   }
@@ -91,8 +70,20 @@ const IndexPage = class extends React.Component {
     this.setState({ activeColor: result.hex, activeColorRgb: result.rgb })
   }
 
+  onNumInputChange = (name, value, type) => {
+    console.log(name, value, type)
+    let newState = { ...this.state }
+    if (type) {
+      newState[type][name] = value
+    } else {
+      newState[name] = value
+    }
+    this.setState({ ...newState })
+  }
+
   render() {
     const {
+      borderRadius,
       activeColor,
       activeColorRgb,
       hoverInput,
@@ -100,11 +91,14 @@ const IndexPage = class extends React.Component {
       hover,
     } = this.state
     const sliderSettings = {
+      centerMode: true,
+      easing: 'cubic-bezier',
+      focusOnSelect: true,
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
     }
     return (
       <div>
@@ -114,26 +108,43 @@ const IndexPage = class extends React.Component {
             normal={normal}
             hover={hover}
             activeColorRgb={activeColorRgb}
+            borderRadius={borderRadius}
+            hoverInput={hoverInput}
           >
-            <p>Welcome to your new Gatsby site.</p>
-            <p>Now go build something great.</p>
-            <NumberInput formatter={value => `${value}px`} />
-            <CirclePicker
-              color={activeColor}
-              onChange={this.onColorChange}
-              colors={['#dddddd', '#bbbbbb', '#999999', '#777777', '#555555']}
+            <ControlsForm
+              borderRadius={borderRadius}
+              normal={normal}
+              hover={hover}
+              activeColor={activeColor}
+              onChangeNum={this.onNumInputChange}
+              onColorChange={this.onColorChange}
             />
           </Card>
         </Row>
-        <Row>
+        <Row style={{ marginBottom: 0, paddingBottom: '3rem' }}>
           <SliderWrapper>
             <Slider {...sliderSettings}>
-              {SliderOptions.map(example => <SliderCard example={example} />)}
+              {SliderOptions.map((example, index) => (
+                <SliderCard
+                  key={index}
+                  // normal={normal}
+                  // hover={hover}
+                  // activeColorRgb={activeColorRgb}
+                  // borderRadius={borderRadius}
+                  example={example}
+                />
+              ))}
             </Slider>
           </SliderWrapper>
         </Row>
         <Row>
-          <CodeCard padding="0rem">
+          <CodeCard
+            // normal={normal}
+            // hover={hover}
+            // activeColorRgb={activeColorRgb}
+            // borderRadius={borderRadius}
+            padding="0rem"
+          >
             <CodeColumn>
               <div>0</div>
               <div>1</div>
@@ -145,14 +156,27 @@ const IndexPage = class extends React.Component {
           </CodeCard>
         </Row>
         <Row>
-          <Card padding="2rem">
+          <Card
+            // normal={normal}
+            // hover={hover}
+            // activeColorRgb={activeColorRgb}
+            // borderRadius={borderRadius}
+            padding="2rem"
+          >
             <h3>How it Works</h3>
             <div>
               Tweak options, view standout examples, and copy CSS to your own
               projects and designs.
             </div>
           </Card>
-          <Card padding="2rem" style={{ margin: '0rem 1rem' }}>
+          <Card
+            // normal={normal}
+            // hover={hover}
+            // activeColorRgb={activeColorRgb}
+            // borderRadius={borderRadius}
+            padding="2rem"
+            style={{ margin: '0rem 2rem' }}
+          >
             <h3>Why</h3>
             <div>
               A good tool should make getting to the end result easier. By
@@ -161,7 +185,13 @@ const IndexPage = class extends React.Component {
               design that works.
             </div>
           </Card>
-          <Card padding="2rem">
+          <Card
+            // normal={normal}
+            // hover={hover}
+            // activeColorRgb={activeColorRgb}
+            // borderRadius={borderRadius}
+            padding="2rem"
+          >
             <h3>Subscribe</h3>
           </Card>
         </Row>

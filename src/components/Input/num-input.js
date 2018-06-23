@@ -6,15 +6,22 @@ import './num-input.css'
 import { COLORS } from '../../constants'
 
 class NumInput extends React.Component {
+  onChangeValue = value => {
+    const { name, onChangeNum, type } = this.props
+    this.props.onChangeNum(name, value, type)
+  }
+
   render() {
-    const { max, min, defaultValue } = this.props
+    const { max, min, defaultValue, type } = this.props
     return (
       <div>
         <InputNumber
           style={{ height: 40 }}
+          type={type}
           max={max}
           min={min}
           defaultValue={defaultValue}
+          onChange={this.onChangeValue}
           {...this.props}
         />
       </div>

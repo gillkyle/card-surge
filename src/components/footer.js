@@ -9,11 +9,11 @@ const Footer = props => (
   <div
     style={{
       // borderTop: `1px solid ${COLORS['gray']}`,
+      // background: `linear-gradient(to left, ${COLORS['primaryBlue']}, ${
+      //   COLORS['secondaryBlueT']
+      // })`,
       position: 'relative',
       bottom: 0,
-      background: `linear-gradient(to left, ${COLORS['primaryBlue']}, ${
-        COLORS['secondaryBlueT']
-      })`,
       width: '100%',
       height: 75,
       display: 'flex',

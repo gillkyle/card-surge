@@ -2,6 +2,8 @@ import React from 'react'
 import Card from '../card'
 import styled from 'styled-components'
 
+import './slick-slider.css'
+
 const Avatar = styled.div`
   border-radius: 25px;
   height: 50px;
@@ -19,13 +21,21 @@ const SliderCard = class extends React.Component {
   }
   render() {
     const {
+      normal,
+      hover,
+      activeColorRgb,
+      borderRadius,
       example: { src, name },
     } = this.props
     return (
       <Card
+        normal={normal}
+        hover={hover}
+        activeColorRgb={activeColorRgb}
+        borderRadius={borderRadius}
         padding="1rem"
         style={{
-          margin: '1rem',
+          margin: '3px 0.5rem',
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
