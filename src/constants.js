@@ -4,5 +4,9 @@ export const COLORS = {
   secondaryBlue: '#69B6F7',
   secondaryBlueT: 'rgba(105, 182, 247, .45)',
   gray: '#bcbcbe',
+  lightGray: '#f6f6f6',
   white: '#fff',
+  gold: '#F4BF62',
 }
+
+export const BORDER_RADIUS = 5

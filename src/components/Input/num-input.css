@@ -5,5 +5,10 @@
 .rc-input-number-input {
   font-size: 20px;
   color: #69b6f7;
-  width: 80px;
+  width: 100%;
+}
+
+.circle-picker {
+  justify-content: center;
+  grid-column: span 2;
 }

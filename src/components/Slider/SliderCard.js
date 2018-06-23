@@ -24,7 +24,6 @@ const SliderCard = class extends React.Component {
       normal,
       hover,
       activeColorRgb,
-      borderRadius,
       example: { src, name },
     } = this.props
     return (
@@ -32,7 +31,6 @@ const SliderCard = class extends React.Component {
         normal={normal}
         hover={hover}
         activeColorRgb={activeColorRgb}
-        borderRadius={borderRadius}
         padding="1rem"
         style={{
           margin: '3px 0.5rem',

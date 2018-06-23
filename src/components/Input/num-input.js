@@ -12,11 +12,12 @@ class NumInput extends React.Component {
   }
 
   render() {
-    const { max, min, defaultValue, type } = this.props
+    const { max, min, defaultValue, step = 1, type } = this.props
     return (
       <div>
         <InputNumber
           style={{ height: 40 }}
+          step={step}
           type={type}
           max={max}
           min={min}
