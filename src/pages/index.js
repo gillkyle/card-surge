@@ -113,14 +113,18 @@ const IndexPage = class extends React.Component {
     console.log(newState)
     if (newState.hasOwnProperty('border')) {
       this.setState({
-        border: newState.border,
-        normal: newState.normal,
-        shadowColor: newState.shadowColor,
-        shadowColorRgb: newState.shadowColorRgb,
+        border: { ...newState.border },
+        normal: { ...newState.normal },
+        shadowColor: { ...newState.shadowColor },
+        shadowColorRgb: { ...newState.shadowColorRgb },
       })
       if (newState.hover.hasOwnProperty('x')) {
         this.setState({
-          hover: newState.hover,
+          hover: { ...newState.hover },
+        })
+      } else {
+        this.setState({
+          hover: { ...newState.normal },
         })
       }
     }

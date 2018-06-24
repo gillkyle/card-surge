@@ -13,7 +13,7 @@ const FormGrid = styled.div`
   grid-template-rows: 0px 1fr 1fr 10px 1fr 1fr 1fr;
   grid-gap: 1rem 2rem;
   align-items: center;
-  margin: 1.5rem 2rem 2rem 2rem;
+  margin: 2rem 2.5rem 2.5rem 2.5rem;
   color: ${COLORS['gray']};
 `
 const baseInputGrid = styled.div`
