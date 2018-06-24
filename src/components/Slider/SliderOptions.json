@@ -1,7 +1,29 @@
 [
   {
     "name": "Stripe",
-    "src": "https://logo.clearbit.com/stripe.com"
+    "description": "Payment processing for SaaS solutions",
+    "src": "https://logo.clearbit.com/stripe.com",
+    "state": {
+      "border": {
+        "color": "#bcbcbe",
+        "radius": 5,
+        "width": 0,
+        "top": false,
+        "right": false,
+        "bottom": false,
+        "left": false
+      },
+      "normal": {
+        "x": 0,
+        "y": 5,
+        "blur": 35,
+        "spread": 0,
+        "opacity": 0.17
+      },
+      "hover": {},
+      "shadowColor": "#32325d",
+      "shadowColorRgb": { "r": 50, "g": 50, "b": 93, "a": 0.17 }
+    }
   },
   {
     "name": "Product Hunt"

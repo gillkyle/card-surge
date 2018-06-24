@@ -3,3 +3,6 @@
   flex-direction: row;
   align-items: center;
 }
+.slick-slide:focus {
+  outline: none;
+}

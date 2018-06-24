@@ -15,6 +15,7 @@ const ArrowCard = styled(Card)`
   padding: 1rem;
   fontsize: 24;
   z-index: 10;
+  cursor: pointer;
 `
 
 function NextArrow(props) {

@@ -57,7 +57,7 @@ const ControlsForm = class extends React.Component {
       hover,
       border,
       hoverStyles,
-      activeColor,
+      shadowColor,
       onChangeNum,
       onChangeShadowColor,
       onChangeBorderColor,
@@ -87,18 +87,24 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>BORDER SIZES</InputLabel>
             <NumberInput
+              value={border.radius}
               defaultValue={border.radius}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
               name="radius"
               type="border"
+              max={25}
+              min={0}
             />
             <NumberInput
-              defaultValue={border.size}
+              value={border.width}
+              defaultValue={border.width}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
               name="width"
               type="border"
+              max={10}
+              min={0}
             />
           </InputGrid>
           <InputGrid>
@@ -113,9 +119,9 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>BORDER COLOR</InputLabel>
             <CirclePicker
-              color={activeColor}
+              color={border.color}
               onChange={onChangeBorderColor}
-              colors={['#f44336', '#3f51b5', '#673ab7', '#03a9f4', '#000']}
+              colors={['#F4BF62', '#69B6F7', '#ff999b', '#bcbcbe', '#000000']}
             />
           </InputGrid>
           <InputGrid>
@@ -171,6 +177,7 @@ const ControlsForm = class extends React.Component {
             <InputLabel>HORIZONTAL</InputLabel>
 
             <NumberInput
+              value={normal.x}
               defaultValue={normal.x}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -179,6 +186,7 @@ const ControlsForm = class extends React.Component {
             />
             <NumberInput
               disabled={!hoverStyles}
+              value={hover.x}
               defaultValue={hover.x}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -189,6 +197,7 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>VERTICAL</InputLabel>
             <NumberInput
+              value={normal.y}
               defaultValue={normal.y}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -197,6 +206,7 @@ const ControlsForm = class extends React.Component {
             />
             <NumberInput
               disabled={!hoverStyles}
+              value={hover.y}
               defaultValue={hover.y}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -207,6 +217,7 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>BLUR</InputLabel>
             <NumberInput
+              value={normal.blur}
               defaultValue={normal.blur}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -215,6 +226,7 @@ const ControlsForm = class extends React.Component {
             />
             <NumberInput
               disabled={!hoverStyles}
+              value={hover.blur}
               defaultValue={hover.blur}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -225,6 +237,7 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>SPREAD</InputLabel>
             <NumberInput
+              value={normal.spread}
               defaultValue={normal.spread}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -233,6 +246,7 @@ const ControlsForm = class extends React.Component {
             />
             <NumberInput
               disabled={!hoverStyles}
+              value={hover.spread}
               defaultValue={hover.spread}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
@@ -243,7 +257,7 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>SHADOW COLOR</InputLabel>
             <CirclePicker
-              color={activeColor}
+              color={shadowColor}
               onChange={onChangeShadowColor}
               colors={['#dddddd', '#bbbbbb', '#999999', '#777777', '#555555']}
             />
@@ -251,6 +265,7 @@ const ControlsForm = class extends React.Component {
           <InputGrid>
             <InputLabel>OPACITY</InputLabel>
             <NumberInput
+              value={normal.opacity}
               defaultValue={normal.opacity}
               onChangeNum={onChangeNum}
               formatter={value => `${value * 100}%`}
@@ -262,6 +277,7 @@ const ControlsForm = class extends React.Component {
             />
             <NumberInput
               disabled={!hoverStyles}
+              value={hover.opacity}
               defaultValue={hover.opacity}
               onChangeNum={onChangeNum}
               formatter={value => `${value * 100}%`}

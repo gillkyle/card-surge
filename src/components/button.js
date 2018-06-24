@@ -15,7 +15,8 @@ const StyledButton = styled.button`
   font-size: 1rem;
   font-weight: 500;
   border-radius: ${BORDER_RADIUS}px;
-  border: 1px solid ${COLORS['gray']};
+  border: 1px solid
+    ${props => (props.active ? COLORS['primaryBlue'] : COLORS['gray'])};
   box-sizing: border-box;
   outline: none;
   transition: 0.3s all;
@@ -34,7 +35,6 @@ const Button = class extends React.Component {
 
   handleClick = () => {
     const { detail, onClick } = this.props
-    console.log('gothere')
     onClick(detail)
   }
 

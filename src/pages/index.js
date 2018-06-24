@@ -43,8 +43,8 @@ const IndexPage = class extends React.Component {
     super(props)
     this.state = {
       hoverStyles: false,
-      activeColor: '#bbbbbb',
-      activeColorRgb: { r: 187, g: 187, b: 187, a: 1 },
+      shadowColor: '#bbbbbb',
+      shadowColorRgb: { r: 187, g: 187, b: 187, a: 1 },
       normal: {
         x: 0,
         y: 3,
@@ -73,7 +73,7 @@ const IndexPage = class extends React.Component {
 
   onChangeShadowColor = result => {
     console.log(result)
-    this.setState({ activeColor: result.hex, activeColorRgb: result.rgb })
+    this.setState({ shadowColor: result.hex, shadowColorRgb: result.rgb })
   }
   onChangeBorderColor = result => {
     console.log(result)
@@ -101,11 +101,35 @@ const IndexPage = class extends React.Component {
     }
     this.setState({ ...newState })
   }
+  onChangeSlider = (oldIndex, newIndex) => {
+    console.log(newIndex)
+    console.log(SliderOptions)
+    let newState = {}
+    try {
+      newState = JSON.parse(JSON.stringify(SliderOptions[newIndex].state))
+    } catch (e) {
+      console.log("couldn't stringify state from options list")
+    }
+    console.log(newState)
+    if (newState.hasOwnProperty('border')) {
+      this.setState({
+        border: newState.border,
+        normal: newState.normal,
+        shadowColor: newState.shadowColor,
+        shadowColorRgb: newState.shadowColorRgb,
+      })
+      if (newState.hover.hasOwnProperty('x')) {
+        this.setState({
+          hover: newState.hover,
+        })
+      }
+    }
+  }
 
   render() {
     const {
-      activeColor,
-      activeColorRgb,
+      shadowColor,
+      shadowColorRgb,
       hoverStyles,
       normal,
       hover,
@@ -129,7 +153,7 @@ const IndexPage = class extends React.Component {
             normal={normal}
             hover={hover}
             border={border}
-            activeColorRgb={activeColorRgb}
+            shadowColorRgb={shadowColorRgb}
             hoverStyles={hoverStyles}
           >
             <ControlsForm
@@ -137,7 +161,7 @@ const IndexPage = class extends React.Component {
               hover={hover}
               border={border}
               hoverStyles={hoverStyles}
-              activeColor={activeColor}
+              shadowColor={shadowColor}
               onChangeNum={this.onNumInputChange}
               onChangeShadowColor={this.onChangeShadowColor}
               onChangeBorderColor={this.onChangeBorderColor}
@@ -148,9 +172,14 @@ const IndexPage = class extends React.Component {
         </Row>
         <Row style={{ marginBottom: 0, paddingBottom: '3rem' }}>
           <SliderWrapper>
-            <Slider {...sliderSettings}>
+            <Slider beforeChange={this.onChangeSlider} {...sliderSettings}>
               {SliderOptions.map((example, index) => (
-                <SliderCard key={index} example={example} />
+                <SliderCard
+                  key={index}
+                  example={example}
+                  onClick={this.onChangeSlider}
+                  index={index}
+                />
               ))}
             </Slider>
           </SliderWrapper>

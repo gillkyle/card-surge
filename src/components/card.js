@@ -8,33 +8,31 @@ const CardWrapper = styled.div`
   background-color: #fff;
   padding: ${props => (props.padding ? props.padding : '0.5rem')};
   transition: 0.3s all;
+  border: 0px solid;
 
   /* styles driven by page state */
-  border-radius: ${props =>
-    props.border.radius ? `${props.border.radius}px` : '6px'};
+  border-radius: ${props => `${props.border.radius}px`};
   box-shadow: ${props =>
     `${props.normal.x}px ${props.normal.y}px ${props.normal.blur}px ${
       props.normal.spread
-    }px rgba(${props.activeColorRgb.r}, ${props.activeColorRgb.g},${
-      props.activeColorRgb.b
+    }px rgba(${props.shadowColorRgb.r}, ${props.shadowColorRgb.g},${
+      props.shadowColorRgb.b
     }, ${props.normal.opacity})`};
 
   ${props =>
     props.hoverStyles &&
     css`
       &:hover {
-        border-radius: ${props =>
-          props.border.radius ? props.border.radius : '6px'};
+        border-radius: ${props => `${props.border.radius}px`};
         box-shadow: ${props =>
           `${props.hover.x}px ${props.hover.y}px ${props.hover.blur}px ${
             props.hover.spread
-          }px rgba(${props.activeColorRgb.r},${props.activeColorRgb.g},${
-            props.activeColorRgb.b
+          }px rgba(${props.shadowColorRgb.r},${props.shadowColorRgb.g},${
+            props.shadowColorRgb.b
           }, ${props.hover.opacity})`};
       }
     `};
 
-  border: 0px solid;
   ${props =>
     props.border.top &&
     css`
@@ -65,7 +63,7 @@ const Card = props => <CardWrapper {...props}>{props.children}</CardWrapper>
 
 Card.defaultProps = {
   padding: '0.5rem',
-  activeColorRgb: {
+  shadowColorRgb: {
     r: 187,
     g: 187,
     b: 187,

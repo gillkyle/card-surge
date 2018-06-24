@@ -23,20 +23,24 @@ const SliderCard = class extends React.Component {
     const {
       normal,
       hover,
-      activeColorRgb,
-      example: { src, name },
+      shadowColorRgb,
+      example: { src, name, state },
+      onClick,
+      index,
     } = this.props
     return (
       <Card
         normal={normal}
         hover={hover}
-        activeColorRgb={activeColorRgb}
+        shadowColorRgb={shadowColorRgb}
         padding="1rem"
+        onClick={() => onClick(undefined, index)}
         style={{
           margin: '3px 0.5rem',
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
+          cursor: 'pointer',
         }}
       >
         <div style={{}}>
