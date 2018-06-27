@@ -32,10 +32,12 @@ const CodeColumn = styled.div`
   color: ${COLORS['secondaryBlue']};
   background-color: ${COLORS['secondaryBlueT']};
   padding: 1rem 0.5rem 1rem 1.5rem;
+  user-select: none;
 `
 const CodeContent = styled.div`
   padding: 1rem 0.5rem;
   color: ${COLORS['gray']};
+  white-space: pre-line;
 `
 
 const IndexPage = class extends React.Component {
@@ -197,7 +199,22 @@ const IndexPage = class extends React.Component {
               <div>3</div>
               <div>4</div>
             </CodeColumn>
-            <CodeContent>border-color: 'lalala'</CodeContent>
+            <CodeContent>
+              {`border-width: ${border.top ? border.width : 0}px ${
+                border.right ? border.width : 0
+              }px ${border.bottom ? border.width : 0}px ${
+                border.left ? border.width : 0
+              }px;
+border-color: ${border.color};
+border-radius: ${border.radius};
+border-style: solid;
+box-shadow: ${normal.x}px ${normal.y}px ${normal.blur}px ${
+                normal.spread
+              }px rgba(${shadowColorRgb.r}, ${shadowColorRgb.g}, ${
+                shadowColorRgb.b
+              }, ${shadowColorRgb.a});
+`}
+            </CodeContent>
           </CodeCard>
         </Row>
         <Row>

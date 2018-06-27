@@ -91,6 +91,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={border.radius}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="radius"
               type="border"
               max={25}
@@ -101,6 +102,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={border.width}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="width"
               type="border"
               max={10}
@@ -181,6 +183,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={normal.x}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="x"
               type="normal"
             />
@@ -190,6 +193,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={hover.x}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="x"
               type="hover"
             />
@@ -201,6 +205,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={normal.y}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="y"
               type="normal"
             />
@@ -210,6 +215,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={hover.y}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="y"
               type="hover"
             />
@@ -221,6 +227,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={normal.blur}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="blur"
               type="normal"
             />
@@ -230,6 +237,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={hover.blur}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="blur"
               type="hover"
             />
@@ -241,6 +249,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={normal.spread}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="spread"
               type="normal"
             />
@@ -250,6 +259,7 @@ const ControlsForm = class extends React.Component {
               defaultValue={hover.spread}
               onChangeNum={onChangeNum}
               formatter={value => `${value}px`}
+              parser={value => value.replace('px', '')}
               name="spread"
               type="hover"
             />
@@ -268,7 +278,6 @@ const ControlsForm = class extends React.Component {
               value={normal.opacity}
               defaultValue={normal.opacity}
               onChangeNum={onChangeNum}
-              formatter={value => `${value * 100}%`}
               name="opacity"
               type="normal"
               step={0.1}
@@ -280,7 +289,6 @@ const ControlsForm = class extends React.Component {
               value={hover.opacity}
               defaultValue={hover.opacity}
               onChangeNum={onChangeNum}
-              formatter={value => `${value * 100}%`}
               name="opacity"
               type="hover"
               step={0.1}
