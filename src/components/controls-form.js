@@ -186,6 +186,8 @@ const ControlsForm = class extends React.Component {
               parser={value => value.replace('px', '')}
               name="x"
               type="normal"
+              max={30}
+              min={0}
             />
             <NumberInput
               disabled={!hoverStyles}
@@ -196,6 +198,8 @@ const ControlsForm = class extends React.Component {
               parser={value => value.replace('px', '')}
               name="x"
               type="hover"
+              max={30}
+              min={0}
             />
           </InputGrid>
           <InputGrid>
@@ -208,6 +212,8 @@ const ControlsForm = class extends React.Component {
               parser={value => value.replace('px', '')}
               name="y"
               type="normal"
+              max={30}
+              min={0}
             />
             <NumberInput
               disabled={!hoverStyles}
@@ -218,6 +224,8 @@ const ControlsForm = class extends React.Component {
               parser={value => value.replace('px', '')}
               name="y"
               type="hover"
+              max={30}
+              min={0}
             />
           </InputGrid>
           <InputGrid>
@@ -230,6 +238,8 @@ const ControlsForm = class extends React.Component {
               parser={value => value.replace('px', '')}
               name="blur"
               type="normal"
+              max={100}
+              min={0}
             />
             <NumberInput
               disabled={!hoverStyles}
@@ -240,6 +250,8 @@ const ControlsForm = class extends React.Component {
               parser={value => value.replace('px', '')}
               name="blur"
               type="hover"
+              max={100}
+              min={0}
             />
           </InputGrid>
           <InputGrid>

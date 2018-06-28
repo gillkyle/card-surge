@@ -115,6 +115,7 @@ const IndexPage = class extends React.Component {
     console.log(newState)
     if (newState.hasOwnProperty('border')) {
       this.setState({
+        hoverStyles: newState.hoverStyles,
         border: { ...newState.border },
         normal: { ...newState.normal },
         shadowColor: { ...newState.shadowColor },
