@@ -1,8 +1,18 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import Card from './card'
+import styled from 'styled-components'
 
 import { COLORS } from 'constants'
+
+import SocialIcons from './social-icons'
+
+const HeaderLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-style: bold;
+  font-size: 1.5rem;
+  font-weight: 800;
+`
 
 const Header = ({ siteTitle }) => (
   <div
@@ -18,18 +28,8 @@ const Header = ({ siteTitle }) => (
       padding: '0 1rem',
     }}
   >
-    <Link
-      to="/"
-      style={{
-        color: 'white',
-        textDecoration: 'none',
-      }}
-    >
-      {siteTitle}
-    </Link>
-    <div>
-      <Card padding="0.25rem 1.5rem">@gill_kyle</Card>
-    </div>
+    <HeaderLink to="/">{siteTitle}</HeaderLink>
+    <SocialIcons />
   </div>
 )
 

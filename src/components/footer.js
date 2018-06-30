@@ -4,39 +4,23 @@ import Link from 'gatsby-link'
 import Card from './card'
 
 import { COLORS } from '../constants'
+import SocialIcons from './social-icons'
 
-const Footer = props => (
+const Footer = () => (
   <div
     style={{
-      // borderTop: `1px solid ${COLORS['gray']}`,
-      // background: `linear-gradient(to left, ${COLORS['primaryBlue']}, ${
-      //   COLORS['secondaryBlueT']
-      // })`,
       position: 'relative',
       bottom: 0,
       width: '100%',
       height: 75,
-      display: 'flex',
+      display: 'grid',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      gridTemplateColumns: '1fr auto 1fr',
     }}
   >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0 1rem',
-      }}
-    >
-      <Link
-        to="/"
-        style={{
-          color: 'white',
-          textDecoration: 'none',
-        }}
-      />
-      <Card padding=".5rem 1rem">@gill_kyle</Card>
-    </div>
+    <div />
+    <SocialIcons color={COLORS['secondaryBlue']} />
+    <div />
   </div>
 )
 

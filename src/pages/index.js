@@ -21,7 +21,15 @@ const Row = styled.section`
 const SliderWrapper = styled.div`
   width: 100%;
 `
-
+const CardHeader = styled.div`
+  color: ${COLORS['secondaryBlueT']};
+  font-size: 1.25rem;
+  font-weight: 700;
+`
+const CardContent = styled.div`
+  color: ${COLORS['gray']};
+  font-size: 1rem;
+`
 const CodeCard = styled(Card)`
   display: flex;
   flex-direction: row;
@@ -220,23 +228,23 @@ box-shadow: ${normal.x}px ${normal.y}px ${normal.blur}px ${
         </Row>
         <Row>
           <Card padding="2rem">
-            <h3>How it Works</h3>
-            <div>
+            <CardHeader>How it Works</CardHeader>
+            <CardContent>
               Tweak options, view standout examples, and copy CSS to your own
               projects and designs.
-            </div>
+            </CardContent>
           </Card>
           <Card padding="2rem" style={{ margin: '0rem 2rem' }}>
-            <h3>Why</h3>
-            <div>
+            <CardHeader>Why</CardHeader>
+            <CardContent>
               A good tool should make getting to the end result easier. By
               building on top of existing designs and limiting options to ranges
               where better designs for cards are met, it's easier to mock up a
               design that works.
-            </div>
+            </CardContent>
           </Card>
           <Card padding="2rem">
-            <h3>Subscribe</h3>
+            <CardHeader>Subscribe</CardHeader>
           </Card>
         </Row>
       </div>
