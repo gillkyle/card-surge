@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
+import LogoPng from './Logo-Icon.png'
 
 import { COLORS } from 'constants'
 
@@ -12,6 +13,7 @@ const HeaderLink = styled(Link)`
   font-style: bold;
   font-size: 1.5rem;
   font-weight: 800;
+  letter-spacing: 0.1rem;
 `
 
 const Header = ({ siteTitle }) => (
@@ -28,7 +30,13 @@ const Header = ({ siteTitle }) => (
       padding: '0 1rem',
     }}
   >
-    <HeaderLink to="/">{siteTitle}</HeaderLink>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <img
+        src={LogoPng}
+        style={{ height: 60, width: 60, marginRight: '0.5rem' }}
+      />
+      <HeaderLink to="/">{siteTitle}</HeaderLink>
+    </div>
     <SocialIcons />
   </div>
 )
