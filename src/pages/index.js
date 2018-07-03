@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -10,13 +9,26 @@ import SliderCard from '../components/Slider/SliderCard'
 import SliderOptions from '../components/Slider/SliderOptions.json'
 import { NextArrow, PrevArrow } from '../components/Slider/SliderArrows'
 
-import { COLORS, BORDER_RADIUS } from '../constants'
-import ControlsForm from '../components/controls-form'
+import { COLORS, MEDIA_QUERIES } from '../constants'
+import ControlsForm from '../components/ControlsForm'
+import CodeBlock from '../components/CodeBlock'
+import Button from '../components/button'
 
 const Row = styled.section`
   margin-bottom: 3rem;
   display: flex;
   flex-direction: row;
+  @media (max-width: ${MEDIA_QUERIES['mobile']}px) {
+    flex-direction: column;
+  }
+`
+const InfoCardRow = styled(Row)`
+  * + * {
+    margin-left: 1rem;
+    @media (max-width: ${MEDIA_QUERIES['mobile']}px) {
+      margin-left: 0;
+    }
+  }
 `
 const SliderWrapper = styled.div`
   width: 100%;
@@ -25,27 +37,17 @@ const CardHeader = styled.div`
   color: ${COLORS['secondaryBlueT']};
   font-size: 1.25rem;
   font-weight: 700;
+  margin-bottom: 0.5rem;
 `
 const CardContent = styled.div`
   color: ${COLORS['gray']};
   font-size: 1rem;
+  margin-left: 0;
 `
-const CodeCard = styled(Card)`
-  display: flex;
-  flex-direction: row;
-`
-const CodeColumn = styled.div`
-  border-top-left-radius: ${BORDER_RADIUS}px;
-  border-bottom-left-radius: ${BORDER_RADIUS}px;
-  color: ${COLORS['secondaryBlue']};
-  background-color: ${COLORS['secondaryBlueT']};
-  padding: 1rem 0.5rem 1rem 1.5rem;
-  user-select: none;
-`
-const CodeContent = styled.div`
-  padding: 1rem 0.5rem;
-  color: ${COLORS['gray']};
-  white-space: pre-line;
+const InfoCard = styled(Card)`
+  @media (max-width: ${MEDIA_QUERIES['mobile']}px) {
+    margin-bottom: 1rem;
+  }
 `
 
 const IndexPage = class extends React.Component {
@@ -53,8 +55,7 @@ const IndexPage = class extends React.Component {
     super(props)
     this.state = {
       hoverStyles: false,
-      shadowColor: '#bbbbbb',
-      shadowColorRgb: { r: 187, g: 187, b: 187, a: 1 },
+      shadowColor: { r: 187, g: 187, b: 187, a: 1 },
       normal: {
         x: 0,
         y: 3,
@@ -76,19 +77,22 @@ const IndexPage = class extends React.Component {
         left: false,
         radius: 12,
         width: 6,
-        color: COLORS['gold'],
+        color: { r: 244, g: 191, b: 98, a: 1 },
       },
     }
   }
 
-  onChangeShadowColor = result => {
-    console.log(result)
-    this.setState({ shadowColor: result.hex, shadowColorRgb: result.rgb })
-  }
   onChangeBorderColor = result => {
     console.log(result)
     let newState = { ...this.state }
-    newState.border.color = result.hex
+    newState.border.color = result.rgb
+    this.setState({ ...newState })
+  }
+  onChangeShadowColor = result => {
+    console.log(result)
+    let newState = { ...this.state }
+    newState.shadowColor = result.rgb
+    newState.normal['opacity'] = result.rgb.a
     this.setState({ ...newState })
   }
   onHoverToggle = () => {
@@ -100,7 +104,16 @@ const IndexPage = class extends React.Component {
     newState.border[edge] = !newState.border[edge]
     this.setState({ ...newState })
   }
-
+  onOpacityChange = (name, value, type) => {
+    console.log(name, value, type)
+    let newState = { ...this.state }
+    if (type === 'normal') {
+      newState['shadowColor']['a'] = value
+    } else {
+      newState['hover']['opacity'] = value
+    }
+    this.setState({ ...newState })
+  }
   onNumInputChange = (name, value, type) => {
     console.log(name, value, type)
     let newState = { ...this.state }
@@ -127,7 +140,6 @@ const IndexPage = class extends React.Component {
         border: { ...newState.border },
         normal: { ...newState.normal },
         shadowColor: { ...newState.shadowColor },
-        shadowColorRgb: { ...newState.shadowColorRgb },
       })
       if (newState.hover.hasOwnProperty('x')) {
         this.setState({
@@ -142,23 +154,34 @@ const IndexPage = class extends React.Component {
   }
 
   render() {
-    const {
-      shadowColor,
-      shadowColorRgb,
-      hoverStyles,
-      normal,
-      hover,
-      border,
-    } = this.state
+    const { shadowColor, hoverStyles, normal, hover, border } = this.state
     const sliderSettings = {
       centerMode: true,
       easing: 'cubic-bezier',
       focusOnSelect: true,
       infinite: true,
+      initialSlide: 0,
       slidesToShow: 3,
       slidesToScroll: 1,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
+      responsive: [
+        {
+          breakpoint: 950,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            centerMode: false,
+          },
+        },
+        {
+          breakpoint: 850,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     }
     return (
       <div>
@@ -168,7 +191,7 @@ const IndexPage = class extends React.Component {
             normal={normal}
             hover={hover}
             border={border}
-            shadowColorRgb={shadowColorRgb}
+            shadowColor={shadowColor}
             hoverStyles={hoverStyles}
           >
             <ControlsForm
@@ -178,6 +201,7 @@ const IndexPage = class extends React.Component {
               hoverStyles={hoverStyles}
               shadowColor={shadowColor}
               onChangeNum={this.onNumInputChange}
+              onChangeOpacity={this.onOpacityChange}
               onChangeShadowColor={this.onChangeShadowColor}
               onChangeBorderColor={this.onChangeBorderColor}
               onHoverToggle={this.onHoverToggle}
@@ -200,41 +224,22 @@ const IndexPage = class extends React.Component {
           </SliderWrapper>
         </Row>
         <Row>
-          <CodeCard padding="0rem">
-            <CodeColumn>
-              <div>0</div>
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
-            </CodeColumn>
-            <CodeContent>
-              {`border-width: ${border.top ? border.width : 0}px ${
-                border.right ? border.width : 0
-              }px ${border.bottom ? border.width : 0}px ${
-                border.left ? border.width : 0
-              }px;
-border-color: ${border.color};
-border-radius: ${border.radius};
-border-style: solid;
-box-shadow: ${normal.x}px ${normal.y}px ${normal.blur}px ${
-                normal.spread
-              }px rgba(${shadowColorRgb.r}, ${shadowColorRgb.g}, ${
-                shadowColorRgb.b
-              }, ${shadowColorRgb.a});
-`}
-            </CodeContent>
-          </CodeCard>
+          <CodeBlock
+            border={border}
+            normal={normal}
+            hover={hover}
+            shadowColor={shadowColor}
+          />
         </Row>
-        <Row>
-          <Card padding="2rem">
+        <InfoCardRow>
+          <InfoCard padding="2rem">
             <CardHeader>How it Works</CardHeader>
             <CardContent>
               Tweak options, view standout examples, and copy CSS to your own
               projects and designs.
             </CardContent>
-          </Card>
-          <Card padding="2rem" style={{ margin: '0rem 2rem' }}>
+          </InfoCard>
+          <InfoCard padding="2rem">
             <CardHeader>Why</CardHeader>
             <CardContent>
               A good tool should make getting to the end result easier. By
@@ -242,11 +247,11 @@ box-shadow: ${normal.x}px ${normal.y}px ${normal.blur}px ${
               where better designs for cards are met, it's easier to mock up a
               design that works.
             </CardContent>
-          </Card>
-          <Card padding="2rem">
+          </InfoCard>
+          <InfoCard padding="2rem">
             <CardHeader>Subscribe</CardHeader>
-          </Card>
-        </Row>
+          </InfoCard>
+        </InfoCardRow>
       </div>
     )
   }

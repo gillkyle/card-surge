@@ -15,9 +15,9 @@ const CardWrapper = styled.div`
   box-shadow: ${props =>
     `${props.normal.x}px ${props.normal.y}px ${props.normal.blur}px ${
       props.normal.spread
-    }px rgba(${props.shadowColorRgb.r}, ${props.shadowColorRgb.g},${
-      props.shadowColorRgb.b
-    }, ${props.normal.opacity})`};
+    }px rgba(${props.shadowColor.r}, ${props.shadowColor.g},${
+      props.shadowColor.b
+    }, ${props.shadowColor.a})`};
 
   ${props =>
     props.hoverStyles &&
@@ -27,8 +27,8 @@ const CardWrapper = styled.div`
         box-shadow: ${props =>
           `${props.hover.x}px ${props.hover.y}px ${props.hover.blur}px ${
             props.hover.spread
-          }px rgba(${props.shadowColorRgb.r},${props.shadowColorRgb.g},${
-            props.shadowColorRgb.b
+          }px rgba(${props.shadowColor.r},${props.shadowColor.g},${
+            props.shadowColor.b
           }, ${props.hover.opacity})`};
       }
     `};
@@ -37,25 +37,45 @@ const CardWrapper = styled.div`
     props.border.top &&
     css`
       border-top-width: ${props.border.width}px;
-      border-top-color: ${props.border.color};
+      border-top-color: rgba(
+        ${props.border.color.r},
+        ${props.border.color.g},
+        ${props.border.color.b},
+        ${props.border.color.a}
+      );
     `};
   ${props =>
     props.border.right &&
     css`
       border-right-width: ${props.border.width}px;
-      border-right-color: ${props.border.color};
+      border-right-color: rgba(
+        ${props.border.color.r},
+        ${props.border.color.g},
+        ${props.border.color.b},
+        ${props.border.color.a}
+      );
     `};
   ${props =>
     props.border.bottom &&
     css`
       border-bottom-width: ${props.border.width}px;
-      border-bottom-color: ${props.border.color};
+      border-bottom-color: rgba(
+        ${props.border.color.r},
+        ${props.border.color.g},
+        ${props.border.color.b},
+        ${props.border.color.a}
+      );
     `};
   ${props =>
     props.border.left &&
     css`
       border-left-width: ${props.border.width}px;
-      border-left-color: ${props.border.color};
+      border-left-color: rgba(
+        ${props.border.color.r},
+        ${props.border.color.g},
+        ${props.border.color.b},
+        ${props.border.color.a}
+      );
     `};
 `
 
@@ -63,10 +83,11 @@ const Card = props => <CardWrapper {...props}>{props.children}</CardWrapper>
 
 Card.defaultProps = {
   padding: '0.5rem',
-  shadowColorRgb: {
-    r: 187,
-    g: 187,
-    b: 187,
+  shadowColor: {
+    r: 157,
+    g: 157,
+    b: 157,
+    a: 0.5,
   },
   normal: {
     x: 0,

@@ -1,11 +1,11 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import LogoPng from './Logo-Icon.png'
+import LogoPng from '../img/Logo-Icon.png'
 
 import { COLORS } from 'constants'
 
-import SocialIcons from './social-icons'
+import SocialIcons from './SocialIcons'
 
 const HeaderLink = styled(Link)`
   color: white;
@@ -16,7 +16,7 @@ const HeaderLink = styled(Link)`
   letter-spacing: 0.1rem;
 `
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <div
     style={{
       width: '100%',
@@ -33,9 +33,14 @@ const Header = ({ siteTitle }) => (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <img
         src={LogoPng}
-        style={{ height: 60, width: 60, marginRight: '0.5rem' }}
+        style={{
+          height: '2.5rem',
+          width: '2.5rem',
+          marginRight: '0.5rem',
+          marginLeft: '-0.25rem',
+        }}
       />
-      <HeaderLink to="/">{siteTitle}</HeaderLink>
+      <HeaderLink to="/">Card Surge</HeaderLink>
     </div>
     <SocialIcons />
   </div>

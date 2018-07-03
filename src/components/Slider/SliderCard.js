@@ -42,7 +42,7 @@ const SliderCard = class extends React.Component {
     const {
       normal,
       hover,
-      shadowColorRgb,
+      shadowColor,
       example: { src, name, description, state },
       onClick,
       index,
@@ -51,7 +51,7 @@ const SliderCard = class extends React.Component {
       <Card
         normal={normal}
         hover={hover}
-        shadowColorRgb={shadowColorRgb}
+        shadowColor={shadowColor}
         padding="1rem"
         onClick={() => onClick(undefined, index)}
         style={{
