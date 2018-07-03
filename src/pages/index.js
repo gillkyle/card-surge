@@ -43,11 +43,25 @@ const CardContent = styled.div`
   color: ${COLORS['gray']};
   font-size: 1rem;
   margin-left: 0;
+  margin-bottom: 0.5rem;
+`
+const CardFooter = styled.div`
+  width: 100%;
+  margin-left: 0;
 `
 const InfoCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @media (max-width: ${MEDIA_QUERIES['mobile']}px) {
     margin-bottom: 1rem;
   }
+`
+const InlineLinks = styled.a`
+  margin: 0;
+  text-decoration: none;
+  font-weight: 700;
+  color: ${COLORS['secondaryBlue']};
 `
 
 const IndexPage = class extends React.Component {
@@ -83,13 +97,11 @@ const IndexPage = class extends React.Component {
   }
 
   onChangeBorderColor = result => {
-    console.log(result)
     let newState = { ...this.state }
     newState.border.color = result.rgb
     this.setState({ ...newState })
   }
   onChangeShadowColor = result => {
-    console.log(result)
     let newState = { ...this.state }
     newState.shadowColor = result.rgb
     newState.normal['opacity'] = result.rgb.a
@@ -99,13 +111,11 @@ const IndexPage = class extends React.Component {
     this.setState({ hoverStyles: !this.state.hoverStyles })
   }
   onBorderToggle = edge => {
-    console.log(edge)
     let newState = { ...this.state }
     newState.border[edge] = !newState.border[edge]
     this.setState({ ...newState })
   }
   onOpacityChange = (name, value, type) => {
-    console.log(name, value, type)
     let newState = { ...this.state }
     if (type === 'normal') {
       newState['shadowColor']['a'] = value
@@ -115,7 +125,6 @@ const IndexPage = class extends React.Component {
     this.setState({ ...newState })
   }
   onNumInputChange = (name, value, type) => {
-    console.log(name, value, type)
     let newState = { ...this.state }
     if (type) {
       newState[type][name] = value
@@ -125,15 +134,12 @@ const IndexPage = class extends React.Component {
     this.setState({ ...newState })
   }
   onChangeSlider = (oldIndex, newIndex) => {
-    console.log(newIndex)
-    console.log(SliderOptions)
     let newState = {}
     try {
       newState = JSON.parse(JSON.stringify(SliderOptions[newIndex].state))
     } catch (e) {
-      console.log("couldn't stringify state from options list")
+      console.error("couldn't stringify state from options list")
     }
-    console.log(newState)
     if (newState.hasOwnProperty('border')) {
       this.setState({
         hoverStyles: newState.hoverStyles,
@@ -229,27 +235,106 @@ const IndexPage = class extends React.Component {
             normal={normal}
             hover={hover}
             shadowColor={shadowColor}
+            hoverStyles={hoverStyles}
           />
         </Row>
         <InfoCardRow>
           <InfoCard padding="2rem">
-            <CardHeader>How it Works</CardHeader>
-            <CardContent>
-              Tweak options, view standout examples, and copy CSS to your own
-              projects and designs.
-            </CardContent>
+            <div>
+              <CardHeader>How It Was Made</CardHeader>
+              <CardContent>
+                Card Surge was built with a variety of modern tools and
+                technologies including: Gatsby, React, and Netlify, among
+                others.
+              </CardContent>
+              <CardContent>
+                You're welcom to fork the code on Github and contribute what
+                you'd like to see added:
+              </CardContent>
+            </div>
+            <CardFooter>
+              <a href="https://github.com/gillkyle/card-surge" target="_blank">
+                <Button
+                  style={{
+                    padding: '.5rem 1rem',
+                    textAlign: 'left',
+                    background: COLORS['secondaryBlue'],
+                    border: '0px solid white',
+                  }}
+                  active
+                  displayText="See the code"
+                  onClick={() => null}
+                />
+              </a>
+            </CardFooter>
           </InfoCard>
           <InfoCard padding="2rem">
-            <CardHeader>Why</CardHeader>
-            <CardContent>
-              A good tool should make getting to the end result easier. By
-              building on top of existing designs and limiting options to ranges
-              where better designs for cards are met, it's easier to mock up a
-              design that works.
-            </CardContent>
+            <div>
+              <CardHeader>Why Make This?</CardHeader>
+              <CardContent>
+                Designing cards takes tweaking subtle details, and an easier to
+                use playground makes finding the right styles faster.
+              </CardContent>
+              <CardContent>
+                Read about the whole process and how it was built in an upcoming
+                blog post:
+              </CardContent>
+            </div>
+            <CardFooter>
+              <a href="https://medium.com/@kyle.robert.gill" target="_blank">
+                <Button
+                  style={{
+                    padding: '.5rem 1rem',
+                    textAlign: 'left',
+                    background: COLORS['secondaryBlue'],
+                    border: '0px solid white',
+                  }}
+                  active
+                  displayText="View Blog"
+                  onClick={() => null}
+                />
+              </a>
+            </CardFooter>
           </InfoCard>
           <InfoCard padding="2rem">
-            <CardHeader>Subscribe</CardHeader>
+            <div>
+              <CardHeader>Contact</CardHeader>
+              <CardContent>
+                If you want to contact me about anything related to the site,
+                you have questions, or want to pull or include your site in the
+                gallery, feel free to reach out on{' '}
+                <InlineLinks
+                  href="https://www.twitter.com/gill_kyle"
+                  target="_blank"
+                >
+                  Twitter
+                </InlineLinks>,{' '}
+                <InlineLinks
+                  href="https://www.producthunt.com/@gill_kyle"
+                  target="_blank"
+                >
+                  Product Hunt
+                </InlineLinks>, or via{' '}
+                <InlineLinks href="mailto:kylerobertgill@gmail.com">
+                  email.
+                </InlineLinks>
+              </CardContent>
+            </div>
+            <CardFooter>
+              <a href="mailto:kylerobertgill@gmail.com">
+                <Button
+                  style={{
+                    padding: '.5rem 1rem',
+                    textAlign: 'left',
+                    background: COLORS['secondaryBlue'],
+                    border: '0px solid white',
+                  }}
+                  active
+                  displayText="Drop a Line"
+                  onClick={() => null}
+                />
+              </a>
+            </CardFooter>
           </InfoCard>
         </InfoCardRow>
       </div>

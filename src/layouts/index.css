@@ -1,5 +1,6 @@
 html {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Alegreya Sans SC', sans-serif; */
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   background-color: #f1fbfc;
@@ -35,6 +36,7 @@ html {
 body {
   color: #9d9d9d;
   font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Alegreya Sans SC', sans-serif; */
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -51,4 +53,8 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
+}
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }

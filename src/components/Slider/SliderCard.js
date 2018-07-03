@@ -31,7 +31,7 @@ const CardDescription = styled.div`
   color: ${COLORS['gray']};
   font-size: 0.6rem;
   letter-spacing: 1px;
-  line-height: 1;
+  line-height: 1.2;
 `
 
 const SliderCard = class extends React.Component {

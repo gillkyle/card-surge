@@ -25,7 +25,12 @@ const Layout = ({ children, data }) => (
         },
         { name: 'keywords', content: 'cards, ui, design, code' },
       ]}
-    />
+    >
+      <link
+        href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Montserrat:400,700|Open+Sans"
+        rel="stylesheet"
+      />
+    </Helmet>
     <Stripe
       style={{
         top: '-300px',
