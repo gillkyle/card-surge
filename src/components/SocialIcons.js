@@ -33,7 +33,7 @@ const SocialIcons = props => (
         target="_blank"
         href="https://www.github.com/gillkyle"
       >
-        <FA.FaGithub size={'1.75rem'} />
+        <FA.FaGithub />
       </SocialIcon>
     </div>
     <Card padding="0.2rem 1rem">
