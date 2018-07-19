@@ -13,7 +13,7 @@ module.exports = {
         start_url: '/',
         background_color: '#2BE1F2',
         theme_color: '#2BE1F2',
-        display: 'minimal-ui',
+        display: 'standalone',
         icon: 'src/img/Logo-Icon.png',
       },
     },
