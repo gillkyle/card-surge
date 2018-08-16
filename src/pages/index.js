@@ -248,7 +248,7 @@ const IndexPage = class extends React.Component {
                 others.
               </CardContent>
               <CardContent>
-                You're welcom to fork the code on Github and contribute what
+                You're welcome to fork the code on Github and contribute what
                 you'd like to see added:
               </CardContent>
             </div>
