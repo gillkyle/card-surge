@@ -76,11 +76,11 @@ const CodeBlock = class extends React.Component {
           <CodeContent>
       {`border-width: `}<CodeAttr>{`${border.top ? border.width : 0}px ${border.right ? border.width : 0}px ${border.bottom ? border.width : 0}px ${border.left ? border.width : 0}px;`}</CodeAttr>
       {`\nborder-color: `}<CodeAttr>{`rgba(${border.color.r}, ${border.color.g}, ${border.color.b}, ${border.color.a});`}</CodeAttr>
-      {`\nborder-radius: `}<CodeAttr>{`${border.radius};`}</CodeAttr>
-      {`\nborder-style: `}<CodeAttr>{`solid;`}</CodeAttr> 
+      {`\nborder-radius: `}<CodeAttr>{`${border.radius}px;`}</CodeAttr>
+      {`\nborder-style: `}<CodeAttr>{`solid;`}</CodeAttr>
       {`\nbox-shadow: `}<CodeAttr>{`${normal.x}px ${normal.y}px ${normal.blur}px ${normal.spread}px rgba(${shadowColor.r}, ${shadowColor.g}, ${shadowColor.b}, ${shadowColor.a});`}</CodeAttr>
       <span style={{color: '#ddd'}}>{`\n/* hover styles */ `}</span>
-      {`\nborder-style: `}<CodeAttr>{`solid;`}</CodeAttr> 
+      {`\nborder-style: `}<CodeAttr>{`solid;`}</CodeAttr>
       {`\nbox-shadow: `}<CodeAttr>{`${hover.x}px ${hover.y}px ${hover.blur}px ${hover.spread}px rgba(${shadowColor.r}, ${shadowColor.g}, ${shadowColor.b}, ${hover.opacity});`}</CodeAttr>
           </CodeContent>
         </CodeCard>
